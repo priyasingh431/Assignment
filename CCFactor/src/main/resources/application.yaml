@@ -1,0 +1,30 @@
+server:
+  port: 8081
+  
+spring:
+  datasource: 
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: ibm
+    password: ibm
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      
+logging:  file: /logs/application-debug.log
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.int}
+    lease-expiration-duration-in-seconds: 2
+    lease-renewal-interval-in-seconds: 1
+  client:
+    service-url:
+      defaultZone: http://localhost:8083/eureka
+      
+management:  endpoints:    web:      exposure:        include: "*"        
+  
+ 
+  
