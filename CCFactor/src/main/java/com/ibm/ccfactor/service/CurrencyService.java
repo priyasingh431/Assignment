@@ -2,6 +2,7 @@ package com.ibm.ccfactor.service;
 
 import java.util.Optional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Service
 public class CurrencyService {
+	
+	static final Logger log = Logger.getLogger(CurrencyService.class);
 	
 	@Autowired
 	CurrencyRepository currencyRepository;
@@ -51,11 +54,14 @@ public class CurrencyService {
 
 	@HystrixCommand(fallbackMethod="currencyServiceFallback")
 	public Double createConversionfactor(String countryCode, Double amount) {
+		log.info("calling rest client :: " + countryCode + ":" + amount);
 		String convertedAmount= restClient.convertCurrency(countryCode, amount);
+		log.info("returning rest client :: " + convertedAmount);
 		return Double.valueOf(convertedAmount);
 	}
 	
 	public Double currencyServiceFallback(String countryCode, Double amount) {
+		log.info("calling fallback method :: " + countryCode + ":" + amount);
 		return (double) 0;
 	}
 
