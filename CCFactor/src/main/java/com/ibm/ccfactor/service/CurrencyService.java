@@ -2,7 +2,8 @@ package com.ibm.ccfactor.service;
 
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 @Service
 public class CurrencyService {
 	
-	static final Logger log = Logger.getLogger(CurrencyService.class);
+	static final Logger log = LoggerFactory.getLogger(CurrencyService.class);
 	
 	@Autowired
 	CurrencyRepository currencyRepository;

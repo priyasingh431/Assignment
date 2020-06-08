@@ -43,7 +43,7 @@ public class CurrencyController {
 	}
 	
 	@ApiOperation("Method to convert currency")
-	@PostMapping("/convertCurrency/{countryCode}/{amount}")
+	@GetMapping("/convertCurrency/{countryCode}/{amount}")
 	public Double convertCurrency(@PathVariable(value="countryCode") String countryCode , 
 			@PathVariable(value="amount") Double amount) {
 		return currencyService.createConversionfactor(countryCode,amount);

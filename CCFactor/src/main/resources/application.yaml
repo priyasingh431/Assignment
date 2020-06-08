@@ -12,6 +12,9 @@ spring:
   h2:
     console:
       enabled: true
+  zipkin:    base-url: http://192.168.99.100:9411/
+  sleuth:    sampler:      probability: 1.0
+    trace-id128: true
       
 logging:  file: /logs/application-debug.log
 
@@ -24,7 +27,9 @@ eureka:
     service-url:
       defaultZone: http://localhost:8083/eureka
       
-management:  endpoints:    web:      exposure:        include: "*"        
+management:  endpoints:    web:      exposure:        include: "*"
+
+
   
  
   
